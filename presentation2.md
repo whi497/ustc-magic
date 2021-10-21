@@ -36,5 +36,20 @@
 
   <img src="C:\Users\wh030917\AppData\Roaming\Typora\typora-user-images\image-20211017234449823.png" alt="image-20211017234449823" style="zoom:33%;" />
 3. Verilog HDL入门
+* 
 ### 实验练习
 #### 题目一
+* 首先设置端口
+
+  <img src="C:\Users\wh030917\AppData\Roaming\Typora\typora-user-images\image-20211021153900016.png" alt="image-20211021153900016" style="zoom:50%;" />
+  
+* 输入真值表
+
+  <img src="C:\Users\wh030917\AppData\Roaming\Typora\typora-user-images\image-20211021154412197.png" alt="image-20211021154412197" style="zoom:50%;" />
+  
+* 建立电路
+
+  <img src="C:\Users\wh030917\AppData\Roaming\Typora\typora-user-images\image-20211021154502425.png" alt="image-20211021154502425" style="zoom:33%;" />
+
+#### 题目二
+* 首先列出表达式
