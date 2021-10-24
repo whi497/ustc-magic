@@ -53,3 +53,18 @@
 
 #### 题目二
 * 首先列出表达式
+
+  a,b,c分别为A2到A0
+
+  d,e,f分别为G1到G3
+
+  x到t即为Y7到Y0
+
+  x=~a + ~b + ~c + ~d + e + f
+  y=~a + ~b + ~c + ~d + e + f
+  z=~a + ~c + b + ~d + e + f
+  u=~a + c + b + ~d + e + f
+  v=~b + ~c + a + ~d + e + f
+  w=~b + c + a + ~d + e + f
+  s=~b + c + a + ~d + e + f
+  t=c + b + a + ~d + e + f

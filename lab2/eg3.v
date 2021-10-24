@@ -9,5 +9,5 @@ module full_add (
     add add_inst2()(
         .a(s),.b(cin),.sum(sum),.cout(carr2);
     )
-    assign cout=carry1|carry;
+    assign cout=carry1|carry2;
 endmodule

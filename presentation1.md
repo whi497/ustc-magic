@@ -2,7 +2,7 @@
 实验题目：Logisim入门 
 学生姓名：叶子昂
 学生学号：PB20020586
-完成时间：
+完成时间：2021年10月21日
 
 ### 实验题目
 **logisim入门**
@@ -13,6 +13,7 @@
 * 能够使用封装子电路并进行电路设计
 * 了解虚拟机以及Lunix的基本操作
 * 能够通过指导册上的样例电路举一反三完成题目
+* 通过实践巩固模拟数字电路数字部分的知识
 ### 实验环境
 * PC一台：Windows操作系统/Java运行环境(jre)
 * 从官网上下载到本地的Logism仿真工具
@@ -54,17 +55,19 @@
 >
 >* 先设置合适大小的LED点阵
 >
->  <img src="C:\Users\wh030917\AppData\Roaming\Typora\typora-user-images\image-20211017200945088.png" alt="image-20211017200945088" style="zoom:80%;" />
+> <img src="C:\Users\wh030917\AppData\Roaming\Typora\typora-user-images\image-20211017200945088.png" alt="image-20211017200945088" style="zoom:80%;" />
 >
 >* 再连上合适位数的引脚控制
 >
->  <img src="C:\Users\wh030917\AppData\Roaming\Typora\typora-user-images\image-20211017201135944.png" alt="image-20211017201135944" style="zoom: 35%;"/>
+> <img src="C:\Users\wh030917\AppData\Roaming\Typora\typora-user-images\image-20211017201135944.png" alt="image-20211017201135944" style="zoom: 35%;"/>
 >
->  
+>
 >
 >* 按照自己的姓名点亮对应区域的LED灯
 >
->  <img src="D:\wh030917\a魔术作业\ 名字图片.png" alt=" 名字图片" style="zoom: 8%;" />
+>  <img src="C:\Users\wh030917\AppData\Roaming\Typora\typora-user-images\image-20211021221750779.png" alt="image-20211021221750779" style="zoom: 25%;" />
+>
+>
 
 
 >#### 题目二
@@ -74,7 +77,7 @@
 >
 >* 根据自己的学号点亮适宜位置的灯光
 >
->  <img src="D:\wh030917\a魔术作业\学号图片.png" alt="学号图片" style="zoom:80%;" />
+> <img src="D:\wh030917\a魔术作业\lab 1\学号图片.png" alt="学号图片" style="zoom:50%;" />
 
 >#### 题目三
 >* 按照指导书搭建或，与，非门
@@ -98,14 +101,14 @@
 >
 >   <img src="C:\Users\wh030917\AppData\Roaming\Typora\typora-user-images\image-20211017210511472.png" alt="image-20211017210511472" style="zoom:67%;" /><img src="C:\Users\wh030917\AppData\Roaming\Typora\typora-user-images\image-20211017210537066.png" alt="image-20211017210537066" style="zoom:67%;" /><img src="C:\Users\wh030917\AppData\Roaming\Typora\typora-user-images\image-20211017210610802.png" alt="image-20211017210610802" style="zoom: 50%;" />
 >
-> * 依据数字模拟电路所学知识设计二选一选择器
+> * 依据数字模拟电路所学知识设计1bit位宽二选一选择器
 >
 >   <img src="C:\Users\wh030917\AppData\Roaming\Typora\typora-user-images\image-20211017210829014.png" alt="image-20211017210829014" style="zoom:57%;" />
 >   
-> * 进一步设计四选一选择器
+> * 进一步设计2bit位宽四选一选择器
 >
->   <img src="C:\Users\wh030917\AppData\Roaming\Typora\typora-user-images\image-20211017211153786.png" alt="image-20211017211153786" style="zoom: 40%;" />
->	即可知与或非门各需要6，3，3个
+>   <img src="C:\Users\wh030917\AppData\Roaming\Typora\typora-user-images\image-20211021221554644.png" alt="image-20211021221554644" style="zoom: 33%;" />
+>	即可知与或非门各需要12，6，2个
 > 
 
 ### 总结与思考
@@ -119,5 +122,5 @@
 3. 实验的任务量
 	- 一般，思考上较为简单，但第一次配置环境和题目一，二中不少繁复的重复性点击仍消耗不少时间
 4. 对本实验的建议
-	- 适当减少题一这种类型的工作量如仅需显示自己的姓名等
+	- 可以适当减少题一这种类型的重复工作量（而且点好的无法保存）如仅需显示自己的姓氏等
 	- 可以增加题目中元器件的种类以便在实践中掌握更多元器件的功能和特性
