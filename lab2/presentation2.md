@@ -1,25 +1,10 @@
-  
-
 <div style="text-align:center;font-size:2em;font-weight:bold">中国科学技术大学计算机学院</div>
 
 
 <div style="text-align:center;font-size:2em;font-weight:bold">《数字电路实验报告》</div>
 
 
-
-
-
-
-
 ![image-20211028163846705](C:\Users\wh030917\AppData\Roaming\Typora\typora-user-images\image-20211028163846705.png)
-
-
-
-
-
-
-
-
 <div style="display: flex;flex-direction: column;align-items: center;font-size:2em">
 <div>
 <p>实验题目：简单组合逻辑电路 </p>
@@ -31,6 +16,8 @@
 
 
 <div style="page-break-after:always"></div>
+
+
 ### 实验题目
 **简单组合逻辑电路**
 
@@ -53,7 +40,7 @@
   <img src="C:\Users\wh030917\AppData\Roaming\Typora\typora-user-images\image-20211017224802403.png" alt="image-20211017224802403" style="zoom:50%;" /> 
 * 使用Logism自动建立电路
 
-  <img src="D:\wh030917\Documents\GitHub\magic\a魔术作业\lab2\eg1.png" alt="eg1" style="zoom:15%;" />
+  <img src="C:\Users\wh030917\AppData\Roaming\Typora\typora-user-images\image-20211017224621633.png" alt="image-20211017224621633" style="zoom: 50%;" />
 2. 用表达式生成电路图
 * 输入表达式
 
@@ -61,7 +48,7 @@
   
 * Logisim自动建立
 
-  <img src="D:\wh030917\Documents\GitHub\magic\a魔术作业\lab2\eg3.png" alt="eg3" style="zoom:10%;" />
+  <img src="C:\Users\wh030917\AppData\Roaming\Typora\typora-user-images\image-20211017234449823.png" alt="image-20211017234449823" style="zoom:33%;" />
 3. Verilog HDL入门
 * 例一：（简单模块）
 
@@ -140,7 +127,7 @@
 #### 题目三
 * 使用Logisim画出1bit位宽的二选一数据选择器
 
-  <img src="D:\wh030917\Documents\GitHub\magic\a魔术作业\lab2\pr3.png" alt="pr3" style="zoom:10%;" />
+  <img src="C:\Users\wh030917\AppData\Roaming\Typora\typora-user-images\image-20211027152750400.png" alt="image-20211027152750400" style="zoom:33%;" />
   
 * 根据电路图按要求用verilog实现
 
@@ -149,7 +136,7 @@
       input a,b,sel,
       output cout
   );
-      wire s,carry1,carry2;
+      wire s,carry1,carry2,carry3,carry4;
       not(s,sel);
       and(carry1,s,a);
       and(carry2,sel,b);
@@ -160,7 +147,7 @@
 #### 题目四
 * 画出由二选一选择器构成四选一选择器的电路图
 
-  <img src="D:\wh030917\Documents\GitHub\magic\a魔术作业\lab2\erxuanyi.png" alt="erxuanyi" style="zoom: 15%;" />
+  <img src="C:\Users\wh030917\AppData\Roaming\Typora\typora-user-images\image-20211027153445042.png" alt="image-20211027153445042" style="zoom:33%;" />
 
 * 例化题目三中的二选一选择器
 
@@ -208,7 +195,7 @@
 
 * 输入Logisim得到电路图以及真值表
 
-  <img src="D:\wh030917\Documents\GitHub\magic\a魔术作业\lab2\pr6.png" alt="pr6" style="zoom:15%;" /><img src="C:\Users\wh030917\AppData\Roaming\Typora\typora-user-images\image-20211027155713243.png" alt="image-20211027155713243" style="zoom: 50%;" />
+  <img src="C:\Users\wh030917\AppData\Roaming\Typora\typora-user-images\image-20211027155740506.png" alt="image-20211027155740506" style="zoom: 50%;" /><img src="C:\Users\wh030917\AppData\Roaming\Typora\typora-user-images\image-20211027155713243.png" alt="image-20211027155713243" style="zoom: 50%;" />
   
 * 从真值表可以看出当输入有0个或2个为1时 **s1为0 s2为1** 而当输入有1个或3个为1时 **s1为1 s2为0** 从而得知该电路功能为判断输入为高电平信号的个数（或奇偶性）。
 

@@ -4,7 +4,16 @@
 <div style="text-align:center;font-size:2em;font-weight:bold">《数字电路实验报告》</div>
 
 
+
+
+
+
 ![image-20211028163846705](C:\Users\wh030917\AppData\Roaming\Typora\typora-user-images\image-20211028163846705.png)
+
+
+
+
+
 <div style="display: flex;flex-direction: column;align-items: center;font-size:2em">
 <div>
 <p>实验题目：简单组合逻辑电路 </p>
@@ -16,3 +25,4 @@
 
 
 <div style="page-break-after:always"></div>
+
