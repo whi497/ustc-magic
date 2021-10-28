@@ -35,11 +35,14 @@
 **简单组合逻辑电路**
 
 ### 实验目的
-* 课本
+* 指导书
   	- 熟悉Logism的基本用法
   	- 进一步熟悉Logisim更多功能
   	- 用Logisim设计组合逻辑电路并进行仿真
-  	- 初步学习Verilog语法
+    - 初步学习Verilog语法
+* 个人
+	- 学习综合利用两种工具设计实现逻辑电路
+	- 体会verilog语言特性，了解其与编程语言的不同
 
 ### 实验环境
 * 有Windows系统的电脑，能连接校园网
@@ -57,7 +60,7 @@
 2. 用表达式生成电路图
 * 输入表达式
 
-  <img src="C:\Users\wh030917\AppData\Roaming\Typora\typora-user-images\image-20211017233844734.png" alt="image-20211017233844734" style="zoom:30%;" /><img src="C:\Users\wh030917\AppData\Roaming\Typora\typora-user-images\image-20211017233918830.png" alt="image-20211017233918830" style="zoom:30%;" /><img src="C:\Users\wh030917\AppData\Roaming\Typora\typora-user-images\image-20211017233950671.png" alt="image-20211017233950671" style="zoom:30%;" />
+  <img src="C:\Users\wh030917\AppData\Roaming\Typora\typora-user-images\image-20211017233844734.png" alt="image-20211017233844734" style="zoom:26%;" /><img src="C:\Users\wh030917\AppData\Roaming\Typora\typora-user-images\image-20211017233918830.png" alt="image-20211017233918830" style="zoom:26%;" /><img src="C:\Users\wh030917\AppData\Roaming\Typora\typora-user-images\image-20211017233950671.png" alt="image-20211017233950671" style="zoom:27%;" />
   
 * Logisim自动建立
 
@@ -208,7 +211,7 @@
 
 * 输入Logisim得到电路图以及真值表
 
-  <img src="D:\wh030917\Documents\GitHub\magic\a魔术作业\lab2\pr6.png" alt="pr6" style="zoom:15%;" /><img src="C:\Users\wh030917\AppData\Roaming\Typora\typora-user-images\image-20211027155713243.png" alt="image-20211027155713243" style="zoom: 50%;" />
+  <img src="D:\wh030917\Documents\GitHub\magic\a魔术作业\lab2\pr6.png" alt="pr6" style="zoom:12%;" /><img src="C:\Users\wh030917\AppData\Roaming\Typora\typora-user-images\image-20211027155713243.png" alt="image-20211027155713243" style="zoom: 50%;" />
   
 * 从真值表可以看出当输入有0个或2个为1时 **s1为0 s2为1** 而当输入有1个或3个为1时 **s1为1 s2为0** 从而得知该电路功能为判断输入为高电平信号的个数（或奇偶性）。
 

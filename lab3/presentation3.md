@@ -1,3 +1,5 @@
+  
+
 <div style="text-align:center;font-size:2em;font-weight:bold">中国科学技术大学计算机学院</div>
 
 
@@ -8,7 +10,11 @@
 
 
 
+
 ![image-20211028163846705](C:\Users\wh030917\AppData\Roaming\Typora\typora-user-images\image-20211028163846705.png)
+
+
+
 
 
 
@@ -25,4 +31,25 @@
 
 
 <div style="page-break-after:always"></div>
+#### 实验题目
+**简单时序电路**
 
+#### 实验目的
+
+
+#### 实验环境
+
+
+#### 实验过程
+1. 搭建双稳态电路
+2. 搭建SR锁存器
+3. 搭建D锁存器
+4. 搭建D触发器
+5. 搭建寄存器
+6. 搭建简单时序逻辑电路
+
+
+#### 实验练习
+
+
+#### 总结与思考
