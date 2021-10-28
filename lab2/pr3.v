@@ -12,7 +12,7 @@ module selsct (
     input a,b,sel,
     output cout
 );
-    wire s,carry1,carry2,carry3,carry4;
+    wire s,carry1,carry2;
     not(s,sel);
     and(carry1,s,a);
     and(carry2,sel,b);
