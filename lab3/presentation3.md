@@ -19,15 +19,15 @@
 
 
 
-
 <div style="display: flex;flex-direction: column;align-items: center;font-size:2em">
 <div>
 <p>实验题目：简单组合逻辑电路 </p>
 <p>学生姓名：叶子昂</p>
 <p>学生学号：PB20020586</p>
-<p>完成时间：2021年10月28日</p>
+<p>完成时间：2021年11月4日</p>
 </div>
 </div>
+
 
 
 <div style="page-break-after:always"></div>
@@ -44,9 +44,10 @@
 
 #### 实验环境
 
-* 装有windows11的笔记本电脑
+* 装有windows，能连校园网的笔记本电脑
 * 本地的Logisim，和Vivado软件
 * 配置好环境的VS Code用以编写verilog代码
+* vlab.ustc.edu.cn综合平台
 
 
 #### 实验过程
@@ -228,10 +229,108 @@
   endmodule
   ```
 ##### 题目三
-* 搭建异步复位D触发器
-  
-  
 
+*在 Logisim 中搭建一个带有异步复位功能的 D 触发器，画出其完整电路图，并进一步调用该触发器设计一个从 0~15 循环计数的4bit 计数器（可使用 Logisim 中的加法器模块，也可自行设计计数器） ，写出计数器的 Verilog 代码。*  
+
+* 搭建异步复位D触发器
+
+  <img src="D:\wh030917\Documents\GitHub\magic\a魔术作业\lab3\异步复位D触发器.png" alt="异步复位D触发器" style="zoom:15%;" />
+  
+* 调用该模块实现4bit计数器
+  
+  <img src="D:\wh030917\Documents\GitHub\magic\a魔术作业\lab3\模16计数器.png" alt="模16计数器" style="zoom:15%;" />
+
+##### 题目四
+
+*在 Logisim 中搭建一个 9~0 循环递减的计数器，复位值为 9，每个周期减一（可使用 Logisim 中的减法器模块，也可自行设计计数器）， 画出电路图，进行正确性测试，并写出其对应的 Verilog 代码。*  
+
+* 计数器模为10，需用4个触发器，选择T触发器，采用同步复位的方法在输出端均为0的下一个时钟下降沿将电路置为1001，logisim搭建电路图如下。
+
+  <img src="D:\wh030917\Documents\GitHub\magic\a魔术作业\lab3\pr4.png" alt="pr4" style="zoom:15%;" />
+  
+* 根据电路图分模块写出Verilog代码
+
+  ```verilog
+  module top_module (
+      input clk,
+      output reg [4:0] Q
+  );
+    wire [2:1] Qselect;
+    wire [2:1] selout;
+    wire clk_n,t1,t2,t3,rst;
+    assign t1=~Q[0];
+    and(t2,~Q[0],~Q[1]);
+    assign clk_n=~clk;
+    and (t3,~Q[0],~Q[1],~Q[2]);
+    T_ff FF0(.clk(clk_n),.t(1),.cout(Q[0]));
+    T_ff FF1(.clk(clk_n),.t(selout[1]),.cout(Q[1]));
+    T_ff FF2(.clk(clk_n),.t(selout[2]),.cout(Q[2]));
+    T_ff FF3(.clk(clk_n),.t(t3),.cout(Q[3]));
+    selsct sel1(.cout(selout[1]),.a(t1),.b(0),.sel(rst));
+    selsct sel2(.cout(selout[2]),.a(t2),.b(0),.sel(rst)); 
+  endmodule
+  
+  module selsct (
+      input a,b,sel,
+      output cout
+  );
+      wire s,carry1,carry2;
+      not(s,sel);
+      and(carry1,s,a);
+      and(carry2,sel,b);
+      or(cout,carry1,carry2);
+  endmodule
+  
+  module T_ff (
+      input clk,t,
+      output reg cout
+  );
+    always @(negedge clk) 
+    begin
+        if(t==1)
+         cout<=~cout;
+    end  
+  endmodule
+  ```
+
+  
+##### 题目五
+
+*手册中给出的示例电路的复位信号都是低电平有效，如要使复位信号高电平有效，应如何实现？试用 Logisim 画出一个示例电路，并编写 Verilog 代码。*   
+
+* 选择同步复位D触发器作为示例，使复位信号高电平有效。
+
+  <img src="D:\wh030917\Documents\GitHub\magic\a魔术作业\lab3\pr5.png" alt="pr5" style="zoom:15%;" />
+
+ * 根据电路编写Verilog代码 
+
+   ```verilog
+   module D_rsth (
+       input clk,D,rst,
+       output reg q
+   );
+       always @(posedge clk)
+       begin
+       if(rst==1)
+           q=1'b0;
+       else
+           q=D;
+       end
+   endmodule
+   ```
+
+   
 
 #### 总结与思考
 
+1. 实验收获
+   * 通过本次实验，我进一步熟练了Logisim的各项工具，能够利用Logisim设计绘制简单的时序逻辑电路
+   * 了解掌握新的Verilog语法和新关键字，能够理解阅读并设计简单的时序逻辑电路
+   * 通过实践加深了对时序逻辑基本元器件的原理和底层架构的理解
+
+2. 难易程度
+
+   本次实验涉及较多时序逻辑相关内容较前两次实验稍难
+
+3. 实验任务量  
+4. 对本次实验的建议
