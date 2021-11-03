@@ -186,13 +186,52 @@
 #### 实验练习
 
 ##### 题目一
+*在 Logisim 中用与非门搭建 SR 锁存器，画出电路图，并分析其行为特性，列出电路在不同输入时的状态。*
 
 * 使用Logisim绘制出电路图
 
   <img src="D:\wh030917\Documents\GitHub\magic\a魔术作业\lab3\pr1.png" alt="pr1" style="zoom:15%;" />
 
-* 若S非为0则会使
+* 若S非为0则会使SR锁存器置为“1”态，R非为0则会使SR锁存器置为"0"态，S非和R非同为1时电路输出保持不变，S非R非同为0电路不稳定是不被允许的。
+##### 题目二
+*在 Logisim 中搭建一个支持同步置位功能的 D 触发器，画出其电路图，并编写对应的 Verilog 代码。*
+
+* 基于D触发器加入同步置位信号，在Logisim中绘制电路图
+
+  <img src="D:\wh030917\Documents\GitHub\magic\a魔术作业\lab3\同步置位D触发器.png" alt="同步置位D触发器" style="zoom:15%;" />
+  
+* 基于电路图写出Verilog代码
+  
+  ```verilog
+  module top_module (
+      input clk,D,ret,re_n,
+      output reg q
+  );
+      wire temp1,temp2;
+      select select1(.a(0),.b(1),.cout(temp1));
+      select select2(.a(D),.b(temp1),.cout(temp2));
+      always@(posedge clk)
+      begin
+          q<=temp2;
+      end
+  endmodule
+  
+  module selsct (     //二选一模块
+      input a,b,sel,
+      output cout
+  );
+      wire s,carry1,carry2;
+      not(s,sel);
+      and(carry1,s,a);
+      and(carry2,sel,b);
+      or(cout,carry1,carry2);
+  endmodule
+  ```
+##### 题目三
+* 搭建异步复位D触发器
+  
   
 
 
 #### 总结与思考
+
