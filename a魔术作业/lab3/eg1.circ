@@ -282,11 +282,11 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <a name="clabel" val=""/>
     <a name="clabelup" val="east"/>
     <a name="clabelfont" val="SansSerif plain 12"/>
+    <wire from="(130,140)" to="(160,140)"/>
     <wire from="(220,130)" to="(250,130)"/>
     <wire from="(420,100)" to="(480,100)"/>
     <wire from="(420,130)" to="(480,130)"/>
     <wire from="(130,120)" to="(190,120)"/>
-    <wire from="(130,140)" to="(190,140)"/>
     <wire from="(340,100)" to="(370,100)"/>
     <wire from="(300,100)" to="(320,100)"/>
     <wire from="(130,120)" to="(130,130)"/>
@@ -296,6 +296,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(160,70)" to="(340,70)"/>
     <wire from="(160,100)" to="(180,100)"/>
     <wire from="(110,100)" to="(160,100)"/>
+    <wire from="(180,140)" to="(190,140)"/>
     <wire from="(130,140)" to="(130,160)"/>
     <wire from="(320,100)" to="(320,130)"/>
     <wire from="(210,100)" to="(250,100)"/>
@@ -314,6 +315,9 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp loc="(420,100)" name="D锁存器"/>
     <comp lib="1" loc="(210,100)" name="NOT Gate"/>
     <comp loc="(300,100)" name="D锁存器"/>
+    <comp lib="1" loc="(180,140)" name="NOT Gate">
+      <a name="size" val="20"/>
+    </comp>
     <comp lib="1" loc="(220,130)" name="AND Gate">
       <a name="size" val="30"/>
       <a name="inputs" val="2"/>
@@ -860,8 +864,13 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="0" loc="(100,300)" name="Power">
       <a name="facing" val="west"/>
     </comp>
-    <comp loc="(210,280)" name="T触发器"/>
+    <comp loc="(210,280)" name="T触发器">
+      <a name="label" val="FF0"/>
+    </comp>
     <comp lib="0" loc="(100,330)" name="Clock"/>
+    <comp lib="6" loc="(538,267)" name="Text">
+      <a name="text" val="FF3"/>
+    </comp>
     <comp lib="0" loc="(400,90)" name="Ground">
       <a name="facing" val="north"/>
     </comp>
@@ -874,6 +883,9 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp loc="(440,280)" name="T触发器"/>
     <comp lib="1" loc="(130,330)" name="NOT Gate">
       <a name="size" val="20"/>
+    </comp>
+    <comp lib="6" loc="(419,266)" name="Text">
+      <a name="text" val="FF2"/>
     </comp>
     <comp lib="2" loc="(270,150)" name="Multiplexer">
       <a name="facing" val="south"/>
@@ -888,7 +900,9 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="0" loc="(280,90)" name="Ground">
       <a name="facing" val="north"/>
     </comp>
-    <comp loc="(320,280)" name="T触发器"/>
+    <comp loc="(320,280)" name="T触发器">
+      <a name="label" val="FF1"/>
+    </comp>
     <comp lib="0" loc="(100,350)" name="Pin">
       <a name="tristate" val="false"/>
       <a name="label" val="rst"/>
@@ -1167,7 +1181,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <path d="M61,51 Q65,61 69,51" fill="none" stroke="#808080" stroke-width="2"/>
       <rect fill="none" height="40" stroke="#000000" stroke-width="2" width="41" x="50" y="50"/>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="69" y="76">T</text>
-      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="61" y="83">in</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="57" y="84">in</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="61" y="103">rst</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="79" y="64">   Q</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="58" y="64">clk</text>
