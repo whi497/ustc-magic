@@ -4,7 +4,7 @@ module D_rsth (
 );
     always @(posedge clk)
     begin
-    if(rst==1)
+    if(rst==1'b1)
         q=1'b0;
     else
         q=D;

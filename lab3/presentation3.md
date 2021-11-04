@@ -116,6 +116,8 @@
      
     * 在电路中添加异步复位功能
 
+      <img src="D:\wh030917\Documents\GitHub\magic\a魔术作业\lab3\异步复位D触发器.png" alt="异步复位D触发器" style="zoom:15%;" />
+
     * 根据电路写出Verilog代码
 
       ```verilog
@@ -205,12 +207,12 @@
   
   ```verilog
   module top_module (
-      input clk,D,ret,re_n,
+      input clk,D,ret,re_n,//ret_n控制是否置位，ret控制置位为0还是1
       output reg q
   );
       wire temp1,temp2;
-      select select1(.a(0),.b(1),.cout(temp1));
-      select select2(.a(D),.b(temp1),.cout(temp2));
+      select select1(.a(0),.b(1),.sel(ret),.cout(temp1));
+      select select2(.a(D),.b(temp1),.sel(re_n),.cout(temp2));
       always@(posedge clk)
       begin
           q<=temp2;
@@ -232,27 +234,67 @@
 
 *在 Logisim 中搭建一个带有异步复位功能的 D 触发器，画出其完整电路图，并进一步调用该触发器设计一个从 0~15 循环计数的4bit 计数器（可使用 Logisim 中的加法器模块，也可自行设计计数器） ，写出计数器的 Verilog 代码。*  
 
-* 搭建异步复位D触发器
+* 搭建异步复位D触发器（复位信号高电平有效）
 
+  左侧D锁存器有一个异步复位输入端口rst。
+  
   <img src="D:\wh030917\Documents\GitHub\magic\a魔术作业\lab3\异步复位D触发器.png" alt="异步复位D触发器" style="zoom:15%;" />
   
 * 调用该模块实现4bit计数器
+
+  <img src="D:\wh030917\Documents\GitHub\magic\a魔术作业\lab3\0-15计数器.png" alt="0-15计数器" style="zoom:15%;" />
+
+* 根据电路写出Verilog代码
+
+  ```verilog
+  module top_module (
+      input clk,reset,
+      output Q0,Q1,Q2,Q3
+  );
+    wire D0,D1,D2,D3;
+    xor(D0,1,Q0);
+    xor(D1,Q0,Q1);
+    xor(D2,Q0&&Q1,Q2);
+    xor(D3,Q0&&Q1&&Q2,Q3);
+    noDchu FF0(.clk(clk),.D(D0),.rst(reset),.q(Q0));
+    noDchu FF1(.clk(clk),.D(D1),.rst(reset),.q(Q1));
+    noDchu FF2(.clk(clk),.D(D2),.rst(reset),.q(Q2));
+    noDchu FF3(.clk(clk),.D(D3),.rst(reset),.q(Q3));
+  endmodule
   
-  <img src="D:\wh030917\Documents\GitHub\magic\a魔术作业\lab3\模16计数器.png" alt="模16计数器" style="zoom:15%;" />
+  module noDchu (//D触发器
+      input clk,D,rst,
+      output reg q
+  );
+    always @(posedge clk or posedge rst) 
+    begin
+        if(rst==1)
+        q<=0;
+        else
+        q<=D;
+    end  
+  endmodule
+  ```
+  
+  
 
 ##### 题目四
 
 *在 Logisim 中搭建一个 9~0 循环递减的计数器，复位值为 9，每个周期减一（可使用 Logisim 中的减法器模块，也可自行设计计数器）， 画出电路图，进行正确性测试，并写出其对应的 Verilog 代码。*  
 
-* 计数器模为10，需用4个触发器，选择T触发器，采用同步复位的方法在输出端均为0的下一个时钟下降沿将电路置为1001，logisim搭建电路图如下。
+* 计数器模为10，需用4个触发器，选择T触发器（输入信号为1时输出信号翻转），采用同步复位的方法在输出端均为0的下一个时钟下降沿将电路置为1001，logisim搭建电路图如下。
 
-  <img src="D:\wh030917\Documents\GitHub\magic\a魔术作业\lab3\pr4.png" alt="pr4" style="zoom:15%;" />
+  *计数原理*（不考虑置位）：从低位开始翻转所有信号至第一个不为0的位数（该位也翻转）如：10**<u>10</u>**下一位10**<u>01</u>**，1**<u>100</u>**下一位1**<u>011</u>**，000**<u>1</u>**下一位000**<u>0</u>**
+  
+  *置位原理*：在输出为0000时通过置位判断门更改两个二选一选择器的输出，使得输入到FF1，FF2的信号为0，在下一时钟上升沿输出不翻转，而FF0,FF3依然反转为1，从而置位为1001即为9。
+  
+  <img src="D:\wh030917\Documents\GitHub\magic\a魔术作业\lab3\见计数器.png" alt="见计数器" style="zoom:15%;" />
   
 * 根据电路图分模块写出Verilog代码
 
   ```verilog
   module top_module (
-      input clk,
+      input clk,rst,
       output reg [4:0] Q
   );
     wire [2:1] Qselect;
@@ -262,10 +304,10 @@
     and(t2,~Q[0],~Q[1]);
     assign clk_n=~clk;
     and (t3,~Q[0],~Q[1],~Q[2]);
-    T_ff FF0(.clk(clk_n),.t(1),.cout(Q[0]));
-    T_ff FF1(.clk(clk_n),.t(selout[1]),.cout(Q[1]));
-    T_ff FF2(.clk(clk_n),.t(selout[2]),.cout(Q[2]));
-    T_ff FF3(.clk(clk_n),.t(t3),.cout(Q[3]));
+    T_ff FF0(.clk(clk_n),.t(1),.rst(rst),.cout(Q[0]));
+    T_ff FF1(.clk(clk_n),.t(selout[1]),.rst(rst),.cout(Q[1]));
+    T_ff FF2(.clk(clk_n),.t(selout[2]),.rst(rst),.cout(Q[2]));
+    T_ff FF3(.clk(clk_n),.t(t3),.rst(rst),.cout(Q[3]));
     selsct sel1(.cout(selout[1]),.a(t1),.b(0),.sel(rst));
     selsct sel2(.cout(selout[2]),.a(t2),.b(0),.sel(rst)); 
   endmodule
@@ -282,17 +324,19 @@
   endmodule
   
   module T_ff (
-      input clk,t,
+      input clk,t,rst
       output reg cout
   );
-    always @(negedge clk) 
+      always @(negedge clk or posedge rst) 
     begin
-        if(t==1)
-         cout<=~cout;
+        if(rst==1'b0)
+            cout==1'b0;
+        else if(t==1'b1)
+             cout<=~cout;
     end  
   endmodule
   ```
-
+  
   
 ##### 题目五
 
@@ -300,7 +344,7 @@
 
 * 选择同步复位D触发器作为示例，使复位信号高电平有效。
 
-  <img src="D:\wh030917\Documents\GitHub\magic\a魔术作业\lab3\pr5.png" alt="pr5" style="zoom:15%;" />
+  <img src="D:\wh030917\Documents\GitHub\magic\a魔术作业\lab3\gao.png" alt="gao" style="zoom:15%;" />
 
  * 根据电路编写Verilog代码 
 

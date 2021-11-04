@@ -1,20 +1,21 @@
 module top_module (
     input clk,
-    output reg [4:0] Q
+    output [4:0] Q
 );
   wire [2:1] Qselect;
   wire [2:1] selout;
-  wire clk_n,t1,t2,t3,rst;
+  wire clk_n,t1,t2,t3,rst,rst_n;
   assign t1=~Q[0];
-  and(t2,~Q[0],~Q[1]);
   assign clk_n=~clk;
+  and(t2,~Q[0],~Q[1]);
   and (t3,~Q[0],~Q[1],~Q[2]);
+  or(rst,Q[0],Q[1],Q[2]);
   T_ff FF0(.clk(clk_n),.t(1),.cout(Q[0]));
   T_ff FF1(.clk(clk_n),.t(selout[1]),.cout(Q[1]));
   T_ff FF2(.clk(clk_n),.t(selout[2]),.cout(Q[2]));
   T_ff FF3(.clk(clk_n),.t(t3),.cout(Q[3]));
   selsct sel1(.cout(selout[1]),.a(t1),.b(0),.sel(rst));
-  selsct sel2(.cout(selout[2]),.a(t2),.b(0),.sel(rst)); 
+  selsct sel2(.cout(selout[2]),.a(t2),.b(0),.sel(rst));
 endmodule
 
 module selsct (

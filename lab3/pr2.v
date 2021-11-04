@@ -3,8 +3,8 @@ module top_module (
     output reg q
 );
     wire temp1,temp2;
-    select select1(.a(0),.b(1),.cout(temp1));
-    select select2(.a(D),.b(temp1),.cout(temp2));
+    select select1(.a(0),.b(1),.sel(ret),.cout(temp1));
+    select select2(.a(D),.b(temp1),.sel(re_n),.cout(temp2));
     always@(posedge clk)
     begin
         q<=temp2;
