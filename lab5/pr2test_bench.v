@@ -33,5 +33,6 @@ module test_bench (
       #12.5 D=1;
       #15 RST_N=1;
       #10 D=0;
+      #17.5 $stop;
   end
 endmodule
