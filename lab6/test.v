@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 2021/11/11 17:19:38
+// Create Date: 2020/11/05 16:59:21
 // Design Name: 
-// Module Name: test_bench
+// Module Name: cnt
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -18,20 +18,19 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
-module test_bench (
-    
-);
-  reg clk,RST_N,D;
-  wire o;
-  d_ff_r d_ff_r(.clk(clk),.rst_n(RST_N),.d(D),.q(o));
-  initial begin
-      clk=0;
-      forever #5 clk=~clk;
-  end 
-  initial begin
-      RST_N=0;D=0;
-      #12.5 D=1;
-      #15 RST_N=1;
-      #10 D=0;
-  end
+
+
+module test(
+input               clk,
+input               rst,
+input       [7:0]   sw,
+output reg  [7:0]   led);
+always@(posedge clk or posedge rst)
+begin
+    if(rst)
+        led <= 8'haa;
+    else
+        led <= {sw[0],sw[1],sw[2],sw[3],sw[4],sw[5],sw[6],sw[7]};
+end
+
 endmodule
