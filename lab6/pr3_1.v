@@ -19,20 +19,15 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module testbench (
+module conculator (
+    input clk,rst,
+    output [7:0] cout
 );
-    reg clk,rst;
-    wire [7:0] Q;
-    conculator conculator(.clk(clk),.rst(rst),.Q(Q));
-    initial begin
-        rst=1;
-        #5 rst=0;
-
+    reg [31:0] Q;
+    always @(posedge clk or posedge rst)
+    begin
+        if(rst==1)Q<=32'b0;
+        else Q<=Q+32'b1;
     end
-    initial begin
-        clk=0;
-        forever begin
-            clk=~clk;
-        end
-    end
+    assign cout=Q[31:24];
 endmodule

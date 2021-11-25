@@ -19,20 +19,12 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module testbench (
+module diaplay (
+    input [3:0] a,
+    output [7:0] spo
 );
-    reg clk,rst;
-    wire [7:0] Q;
-    conculator conculator(.clk(clk),.rst(rst),.Q(Q));
-    initial begin
-        rst=1;
-        #5 rst=0;
-
-    end
-    initial begin
-        clk=0;
-        forever begin
-            clk=~clk;
-        end
-    end
+    dist_mem_gen_0 dist_mem_gen_0(
+        .a(a),
+        .spo(spo)
+    );
 endmodule
