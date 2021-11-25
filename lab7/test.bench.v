@@ -19,12 +19,18 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module display (
-    input [3:0] a,
-    output [7:0] spo
+module test_bench (
+    
 );
-    dist_mem_gen_0 dist_mem_gen_0(
-        .a(a),
-        .spo(spo)
-    );
+    integer i=0;
+    reg [3:0] a;
+    wire [7:0] spo;
+    display display(.a(a),.spo(spo));
+    initial begin
+        a=0;
+        for(i=0;i<16;i=i+1)begin
+            #10 a=i;
+        end
+        #10$stop;
+    end
 endmodule
