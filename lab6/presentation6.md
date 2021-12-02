@@ -24,9 +24,10 @@
 <p>实验题目：FPGA原理及Vivado综合 </p>
 <p>学生姓名：叶子昂</p>
 <p>学生学号：PB20020586</p>
-<p>完成时间：2021年11月24日</p>
+<p>完成时间：2021年12月1日</p>
 </div>
 </div>
+
 
 
 
@@ -89,6 +90,21 @@ endmodule
 
 * 打开test.xdc文件，调换输出接口与FPGA端口的对应关系，再综合生成bit文件烧写入FPGA在线平台。
 
+* 部分对应接口如下：
+
+  ```verilog
+  set_property -dict { PACKAGE_PIN C17   IOSTANDARD LVCMOS33 } [get_ports { led[7] }];
+  set_property -dict { PACKAGE_PIN D18   IOSTANDARD LVCMOS33 } [get_ports { led[6] }];
+  set_property -dict { PACKAGE_PIN E18   IOSTANDARD LVCMOS33 } [get_ports { led[5] }];
+  set_property -dict { PACKAGE_PIN G17   IOSTANDARD LVCMOS33 } [get_ports { led[4] }];
+  set_property -dict { PACKAGE_PIN D17   IOSTANDARD LVCMOS33 } [get_ports { led[3] }];
+  set_property -dict { PACKAGE_PIN E17   IOSTANDARD LVCMOS33 } [get_ports { led[2] }];
+  set_property -dict { PACKAGE_PIN F18   IOSTANDARD LVCMOS33 } [get_ports { led[1] }];
+  set_property -dict { PACKAGE_PIN G18   IOSTANDARD LVCMOS33 } [get_ports { led[0] }];
+  ```
+
+  
+
 * 测试开关与LED等对应关系如下图：
 
   <img src="D:\wh030917\Documents\GitHub\magic\a魔术作业\lab6\屏幕截图 2021-11-18 151002.png" alt="屏幕截图 2021-11-18 151002" style="zoom:38%;" />
@@ -117,6 +133,25 @@ endmodule
   ```
   
 * 在.xdc中约束管脚，将cout分配到FPGA8个LED端口。利用Vivado综合生成bit文件。
+
+  ```verilog
+  ## Clock signal
+  set_property -dict { PACKAGE_PIN E3    IOSTANDARD LVCMOS33 } [get_ports { clk }]; #IO_L12P_T1_MRCC_35 Sch=clk100mhz
+  #create_clock -add -name sys_clk_pin -period 10.00 -waveform {0 5} [get_ports {CLK100MHZ}];
+  ## FPGAOL BUTTON & SOFT_CLOCK
+  set_property -dict { PACKAGE_PIN B18   IOSTANDARD LVCMOS33 } [get_ports { rst }];
+  ## FPGAOL LED (signle-digit-SEGPLAY)
+  set_property -dict { PACKAGE_PIN C17   IOSTANDARD LVCMOS33 } [get_ports { cout[0] }];
+  set_property -dict { PACKAGE_PIN D18   IOSTANDARD LVCMOS33 } [get_ports { cout[1] }];
+  set_property -dict { PACKAGE_PIN E18   IOSTANDARD LVCMOS33 } [get_ports { cout[2] }];
+  set_property -dict { PACKAGE_PIN G17   IOSTANDARD LVCMOS33 } [get_ports { cout[3] }];
+  set_property -dict { PACKAGE_PIN D17   IOSTANDARD LVCMOS33 } [get_ports { cout[4] }];
+  set_property -dict { PACKAGE_PIN E17   IOSTANDARD LVCMOS33 } [get_ports { cout[5] }];
+  set_property -dict { PACKAGE_PIN F18   IOSTANDARD LVCMOS33 } [get_ports { cout[6] }];
+  set_property -dict { PACKAGE_PIN G18   IOSTANDARD LVCMOS33 } [get_ports { cout[7] }];
+  ```
+
+  
 
 * 烧写bit文件进入FPGA在线平台。观察结果：
 
@@ -147,8 +182,15 @@ endmodule
 
 * 对比观察发现32位计数器LED变更明显慢于30位计数器。时钟信号起驱动计数器计数的作用（时钟上升沿到来一次计数器加一）。
 
-##### 总结与思考
+#### 总结与思考
 * 本次实验的收获
+  * 通过本次实验，我了解了FPGA的工作原理，知道Verilog约束文件在开发中起的作用。
+  * 能够利用所给出的约束文件做出简单的修改并运用在自己的项目中。
+  * 学会了利用Vivado进行一套完整的开发流程。
 * 本次实验的难易程度
+  * 本次实验主要在改.xdc文件上较为简单。
 * 本次实验的任务量
+  *  本次实验代码部分较为简单，主要工作量在更改约束文件及Vivado综合生成bitstream文件上。任务量适中。
+
 * 对本次实验的建议
+  * 本次实验较好的锻炼了我阅读并使用.xdc文件的能力。不过希望能增加一些介绍如何使用hexplay端口的部分。
