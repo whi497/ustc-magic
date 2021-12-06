@@ -53,7 +53,7 @@ module time_count (
                     outst<=4'b0;
                     if(outsg>=4'd9)
                     begin
-                        outsg<=4'b0;
+                        outsg<=4'b0;                                                                                                                     
                         if(outss>=4'd5)
                         begin
                             outss<=4'b0;
