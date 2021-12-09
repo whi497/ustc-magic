@@ -3,15 +3,15 @@ module test (
     output led
 );
     reg [1:0] cnt;
-    reg [1:0] cnttemp;
+    reg [1:0] cntnextstate;
     always@(*)
     begin
-        cnttemp=cnt+2'b1;
+        cntnextstate=cnt+2'b1;
     end
     always@(posedge clk or posedge rst)
     begin
         if(rst)cnt<=2'b0;
-        else cnt<=cnttemp;
+        else cnt<=cntnextstate;
     end
     assign led=(cnt==2'b11)?1'b1:1'b0;
 endmodule

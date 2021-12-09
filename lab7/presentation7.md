@@ -249,7 +249,7 @@
             begin
                 if(cout>=20'd999999)
                 cout<=20'b0;
-                else cout=cout+20'b1;
+                else cout<=cout+20'b1;
                 enable<=enable+2'b1;
             end
         end
