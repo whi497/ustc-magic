@@ -13,13 +13,16 @@ module check (
     wire clk_n;
     wire button_n;
     wire button_edge;
+    //状态机状态
     parameter A = 4'ha;
     parameter B = 4'hb;
     parameter C = 4'hc;
     parameter D = 4'hd;
+    //信号处理
     jtrclr clr(.clk(clk),.button(button),.button_n(button_n));
     signal_edge cedge(.clk(clk),.button(button_n),.button_edge(button_edge));
     clk_wiz_0 clk_wiz_0_insrt(.clk_in1(clk),.clk_out1(clk_n),.reset(sw[1]),.locked(locked));
+    //生成次态
     always@(*)
     begin
         if(button_edge)
@@ -52,6 +55,7 @@ module check (
             endcase
         end
     end
+    //计数
     always@(posedge clk or posedge sw[1])
     begin
         if(sw[1])
@@ -62,6 +66,7 @@ module check (
             else cout<=cout;
         end
     end
+    //状态更新
     always @(posedge clk or posedge sw[1])
     begin
         if(sw[1])
@@ -83,6 +88,7 @@ module check (
             end
         end
     end
+    //输出信号选择
     always@(posedge clk_n or posedge sw[1])                     
     begin
         if(sw[1])

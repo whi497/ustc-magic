@@ -9,9 +9,11 @@ module counter (
     wire button_edge;
     reg enable;
     reg [7:0] result;
+    //信号处理
     jtrclr clr(.clk(clk),.button(button),.button_n(button_n));
     signal_edge cedge(.clk(clk),.button(button_n),.button_edge(button_edge));
-    clk_wiz_0 clk_wiz_0_insrt(.clk_in1(clk),.clk_out1(clk_n),.reset(sw[1]),.locked(locked));
+    clk_wiz_0 clk_wiz_0_insrt(.clk_in1(clk),.clk_out1(clk_n),.reset(sw[1]),.locked(locked));//clk_n用于输出
+    //计数模块
     always@(posedge clk or posedge sw[1])
     begin
         if(sw[1])
@@ -27,6 +29,7 @@ module counter (
             end
         end
     end
+    //输出信号选择模块
     always@(posedge clk_n or posedge sw[1])                     
     begin
         if(sw[1]) enable<=1'b0;
@@ -44,7 +47,7 @@ endmodule
 
 
 
-module jtrclr (
+module jtrclr (//去毛刺
     input clk,button,
     output button_n
 );
@@ -57,7 +60,7 @@ module jtrclr (
     assign button_n=cnt[3];
 endmodule
 
-module signal_edge(
+module signal_edge(//取上升沿
     input clk,button,
     output button_edge
 );
