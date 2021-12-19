@@ -96,7 +96,7 @@
     );
         reg enable;
         wire clk_n,locked;
-        clk_wiz_0 	      clk_wiz_0_insrt(.clk_in1(clk),.clk_out1(clk_n),.reset(rst),.locked(locked));
+  clk_wiz_0 clk_wiz_0_insrt(.clk_in1(clk),.clk_out1(clk_n),.reset(rst),.locked(locked));
         always@(*)
         begin
             OUT<=(enable)?IN[7:4]:IN[3:0];
@@ -218,9 +218,9 @@
 * 代码整体如下：
     ```verilog
     module time_count (
-    input clk,rst,
-    output reg [3:0] out,
-    output reg [2:0] selsct
+        input clk,rst,
+        output reg [3:0] out,
+        output reg [2:0] selsct
     );
         wire clk_n,locked;
         wire pulse_10hz;
@@ -272,7 +272,7 @@
                         outst<=4'b0;
                         if(outsg>=4'd9)
                         begin
-                            outsg<=4'b0;                                                                                                                     
+                            outsg<=4'b0;                                                                                         
                             if(outss>=4'd5)
                             begin
                                 outss<=4'b0;
@@ -287,6 +287,7 @@
             end
         end
     endmodule
+    
     ```
 * 管脚约束，部分文件如下：
     ```verilog
@@ -308,6 +309,19 @@
 
 #### 总结与思考
 * 本次实验的收获
+
+  * 通过本次实验我进一步熟悉了解了FPGAOL在线平台的使用，能够烧写bit文件到平台并使用平台提供的端口验证自己程序的正确性。
+  * 进一步掌握FPGA开发的各个环节，按照流程进行试验提高开发效率。
+  * 了解掌握使用Vivado提供的IP核来辅助开发。
+
 * 本次实验的难易程度
+
+  本次实验涉及较多IP核的使用在教程的帮助下实验难度适中。
+
 * 本次实验的任务量
+
+  本次实验新IP核使用较多，要了解掌握的内容也较多，任务量偏大。
+
 * 对本次实验的建议
+
+  希望在教程中说明时分复用的概念，如果可以的话给一些示例（作业2，3均用到，上网查和助教说明后才了解掌握）
