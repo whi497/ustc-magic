@@ -21,7 +21,7 @@
 module topmodule (
     input clk,button,
     input rx,
-    input [7:7] sw,
+    input [7:0] sw,
     output [7:0] led,
     output tx,
     output reg [3:0] out,
@@ -135,7 +135,7 @@ module topmodule (
         if(rst)er<=0;
         else 
         begin 
-            if(curr_state==LOCKED&&button_edge&&~usercheck)
+            if(curr_state==LOCKED&&is_check_cmd&&~usercheck)
             er<=1;
             else er<=0;
         end
@@ -148,7 +148,7 @@ module topmodule (
         end
         else begin
             if(pa_custate==C&&pa_nestate==A) usercheck<=1;
-            else if(button_edge) usercheck<=0;
+            else if(is_check_cmd) usercheck<=0;
             pa_custate<=pa_nestate;
         end
     end
@@ -212,7 +212,7 @@ module topmodule (
         end
     end
     assign pulse_10hz=(cout==20'd999999);
-    always@(posedge clk or posedge rst)
+    always@(posedge clk)
     begin
         if(rst || clockfinished || (is_exit_cmd&&(curr_state==WORK||curr_state==CLOCK))) begin
             clock[0]<=4'b0;clock[1]<=4'b0;clock[2]<=4'b0;
@@ -228,7 +228,7 @@ module topmodule (
             clock[3]<=cltemp[4];clock[2]<=cltemp[5];clock[1]<=cltemp[6];
         end
         else if(error_cout==2'd2)begin
-            clock[2] = 4'd6;
+            clock[2] <= 4'd6;
             clockstart <=1'b1;
         end
         else
@@ -266,9 +266,9 @@ module topmodule (
                 end
             end
     end
-    assign clockfinished = ((clockstart&&clock[0]&&clock[1]&&clock[2]&&(curr_state==ERRORLOCKED))
-                            ||(clockstart&&clock[0]&&clock[1]&&clock[2]&&clock[3]&&clock[4]&&
-                            clock[5]&&clock[6]&&(curr_state==CLOCK)));
+    assign clockfinished = ((clockstart&&clock[0]==1&&~clock[1]&&~clock[2]&&(curr_state==ERRORLOCKED))
+                            ||(clockstart&&clock[0]==1&&~clock[1]&&~clock[2]&&~clock[3]&&~clock[4]&&
+                            ~clock[5]&&~clock[6]&&(curr_state==CLOCK)));
 
     reg [2:0] enable;
     always@(posedge clk_n)

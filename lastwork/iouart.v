@@ -242,6 +242,16 @@ begin
                     next_state  = C_CMD_RB;
                 else if(is_check_cmd)
                     next_state = C_IDLE;
+                else if(is_start_cmd)
+                    next_state = C_IDLE;
+                else if(is_reset_cmd)
+                    next_state = C_IDLE;
+                else if(is_setcl_cmd)
+                    next_state = C_IDLE;  
+                else if(is_exit_cmd)  
+                    next_state = C_IDLE;
+                else if(is_shutdown_cmd)  
+                    next_state = C_IDLE;
                 else
                     next_state  = C_CMD_ERR;
             end
