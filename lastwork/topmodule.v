@@ -89,13 +89,14 @@ module topmodule (
     begin
         if(rst)begin
             curr_state  <= IDLE;
-            next_state  <= IDLE;
         end
         else
             curr_state  <= next_state;
     end
     always@(*)
     begin
+        if(rst)next_state=IDLE;
+        else begin
         case(curr_state)
         IDLE: begin if(is_start_cmd) next_state=LOCKED; else next_state=IDLE; end
         LOCKED: begin
@@ -126,6 +127,7 @@ module topmodule (
         end
         default: next_state=IDLE; 
         endcase
+    end
     end
 
     always@(posedge clk)
